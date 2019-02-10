@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "dictionary.h"
 
@@ -34,6 +35,7 @@ bool load(const char *dictionary)
     for (int i = 0; i < N; i++)
     {
         hashtable[i] = NULL;
+
     }
 
     // Open dictionary
@@ -51,15 +53,18 @@ bool load(const char *dictionary)
     // Insert words into hash table
     while (fscanf(file, "%s", word) != EOF)
     {
-        char letter = hash(word);
-        int i = atoi(&letter);
+        int i = hash(word);
         node *newVal = malloc(sizeof(node));
 
-        if (!newVal){
-            return 1;
+        if (newVal == NULL){
+            unload();
+            return false;
         }
 
+        strcpy(newVal->word, word);
+        newVal->next = NULL;
 
+        /*
         for(int k=0; k<LENGTH; k++){
             if(word[k] == '\n'){
                 newVal->word[k] = '\0';
@@ -68,11 +73,13 @@ bool load(const char *dictionary)
             newVal->word[k] = word[k];
         }
         newVal->next = NULL;
+        */
 
         if(hashtable[i] == NULL){
             hashtable[i] = newVal;
+
         }else{
-            newVal->next = hashtable[i]->next;
+            newVal->next = hashtable[i];
             hashtable[i] = newVal;
         }
 
@@ -88,20 +95,58 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    int words = 0;
+
+    for(int i=0; i<N; i++){
+        node *cursor = hashtable[i];
+        while(cursor != NULL){
+            words++;
+            cursor = cursor->next;
+        }
+    }
+
+    return words;
 }
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    // TODO
+
+    node *cursor = hashtable[hash(word)];
+    char *copy = malloc(strlen(word) + 1);
+    strcpy(copy, word);
+
+    for(int i = 0; copy[i]; i++){
+        copy[i] = tolower(copy[i]);
+    }
+    while(cursor != NULL){
+        if(strcmp(cursor->word, copy) == 0){
+            free(copy);
+            return true;
+        }
+        cursor = cursor->next;
+    }
+
+    free(copy);
+
     return false;
 }
 
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    // TODO
-    return false;
+
+    for(int i=0; i<N; i++){
+        node *cursor = hashtable[i];
+
+        while(cursor!=NULL){
+            node *temp = cursor;
+            cursor = cursor->next;
+            hashtable[i] = cursor;
+            free(temp);
+        }
+    }
+
+    return true;
+
 }
