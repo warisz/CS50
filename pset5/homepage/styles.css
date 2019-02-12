@@ -1,0 +1,103 @@
+body{
+    width: 100%;
+    height: 100%;
+}
+.wrapper{
+    text-align: center;
+    position: relative;
+}
+button{
+   display: inline-block;
+   position: relative;
+   margin-top: 3%;
+
+}
+
+img{
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 17%;
+    margin-top: 2%;
+}
+
+.title{
+    position: relative;
+    font-family: Monaco,Consolas;
+    font-size: 2.3em;
+    color: #e65454;
+    text-align: center;
+    padding-top: 8%;
+}
+
+.github{
+
+}
+
+.resume{
+    margin-left: 8px;
+}
+
+
+.text {
+    position: relative;
+    font-family: Monaco,Consolas,Lucida Console,monospace;
+    font-size: 2.3em;
+    color: #e65454;
+    text-align: center;
+    margin-right: 1%;
+    padding-top: 8%;
+}
+
+/* cursor learned from: https://codepen.io/alandunning/pen/RWRrEW */
+.text::after {
+  content: "";
+  position: relative;
+  margin-top: 1%;
+  margin-left: -1%;
+  /* Remove display: inline-block if not required to be on the same line as text etc */
+  display: inline-block;
+  background-color:  #e65454;
+  vertical-align: top;
+  width: 10px;
+  /* Set height to the line height of .text */
+  height: 30px;
+  -webkit-animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite;
+}
+
+@-webkit-keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+.links{
+    text-align: center;
+    position: relative;
+
+}
+
+h5{
+   display: block;
+   position: relative;
+   color: #e65454;
+   font-family: Monaco,Consolas;
+
+}
+
+.links a{
+    text-decoration: none;
+}
+
+#interests{
+    margin-top: 3%;
+
+}
