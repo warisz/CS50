@@ -46,23 +46,19 @@ img{
     font-size: 2.3em;
     color: #e65454;
     text-align: center;
-    margin-right: 1%;
-    padding-top: 8%;
 }
 
 /* cursor learned from: https://codepen.io/alandunning/pen/RWRrEW */
 .text::after {
   content: "";
   position: relative;
-  margin-top: 1%;
-  margin-left: -1%;
+
   /* Remove display: inline-block if not required to be on the same line as text etc */
   display: inline-block;
   background-color:  #e65454;
-  vertical-align: top;
-  width: 10px;
+  width: 0.3em;
   /* Set height to the line height of .text */
-  height: 30px;
+  height: 0.8em;
   -webkit-animation: blink 1s step-end infinite;
   animation: blink 1s step-end infinite;
 }
