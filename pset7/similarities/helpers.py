@@ -31,19 +31,15 @@ def sentences(a, b):
 def substrings(a, b, n):
     """Return substrings of length n in both a and b"""
 
-    aList = []
-    bList = []
     identical = []
 
-
-    for word in a.split(" "):
-        aList.append(wrap(word, n))
-
-    for word in b.split(" "):
-        bList.append(wrap(word, n))
-
-    for substring in aList:
-        if substring in bList:
-            identical.append(substring)
+    for i in range(len(a)):
+        substring = ""
+        for x in range(n):
+            if((i+x)<(len(a)) and a[i+x] != " " and a[i+x] != "\n"):
+                substring += a[i+x]
+        if(len(substring)==n):
+            if(substring in b):
+                identical.append(substring)
 
     return set(identical)
